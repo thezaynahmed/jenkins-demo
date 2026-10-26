@@ -1,0 +1,13 @@
+from app import add, app
+
+
+def test_add():
+    assert add(2, 3) == 5
+    assert add(-1, 1) == 0
+
+
+def test_health_endpoint():
+    client = app.test_client()
+    response = client.get("/health")
+    assert response.status_code == 200
+    assert response.get_json() == {"healthy": True}
